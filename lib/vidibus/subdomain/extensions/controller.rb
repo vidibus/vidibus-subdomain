@@ -16,7 +16,7 @@ module Vidibus
         # Returns current subdomain.
         def subdomain
           @subdomain ||= begin
-            request.host_with_port.match(/^([^\.]+)/)
+            request.host_with_port.match(/(.+)\.#{::Service.this.domain}/)
             if $1
               s = OpenStruct.new
               s.realm = $1
